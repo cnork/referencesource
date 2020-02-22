@@ -94,7 +94,7 @@ namespace System {
                 throw new ArgumentNullException("values");
             Contract.EndContractBlock();
 
-            if (values.Length == 0 || values[0] == null)
+            if (values.Length == 0)
                 return String.Empty;
 
             if (separator == null)
@@ -102,7 +102,11 @@ namespace System {
 
             StringBuilder result = StringBuilderCache.Acquire();
 
-            String value = values[0].ToString();           
+            String value = null;
+
+            if (values[0] != null)
+                value = values[0].ToString();
+
             if (value != null)
                 result.Append(value);
 
